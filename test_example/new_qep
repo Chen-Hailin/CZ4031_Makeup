@@ -1,0 +1,57 @@
+[                                                                                                           +
+   {                                                                                                         +
+     "Plan": {                                                                                               +
+       "Node Type": "Hash Join",                                                                             +
+       "Parallel Aware": false,                                                                              +
+       "Join Type": "Inner",                                                                                 +
+       "Startup Cost": 62083.10,                                                                             +
+       "Total Cost": 149747.00,                                                                              +
+       "Plan Rows": 2585135,                                                                                 +
+       "Plan Width": 80,                                                                                     +
+       "Output": ["publications.title", "authorpublication.author_id"],                                      +
+       "Inner Unique": true,                                                                                 +
+       "Hash Cond": "(authorpublication.pub_id = publications.pub_id)",                                      +
+       "Plans": [                                                                                            +
+         {                                                                                                   +
+           "Node Type": "Seq Scan",                                                                          +
+           "Parent Relationship": "Outer",                                                                   +
+           "Parallel Aware": false,                                                                          +
+           "Relation Name": "authorpublication",                                                             +
+           "Schema": "public",                                                                               +
+           "Alias": "authorpublication",                                                                     +
+           "Startup Cost": 0.00,                                                                             +
+           "Total Cost": 44171.68,                                                                           +
+           "Plan Rows": 3062168,                                                                             +
+           "Plan Width": 8,                                                                                  +
+           "Output": ["authorpublication.author_id", "authorpublication.pub_id"]                             +
+         },                                                                                                  +
+         {                                                                                                   +
+           "Node Type": "Hash",                                                                              +
+           "Parent Relationship": "Inner",                                                                   +
+           "Parallel Aware": false,                                                                          +
+           "Startup Cost": 39200.70,                                                                         +
+           "Total Cost": 39200.70,                                                                           +
+           "Plan Rows": 908192,                                                                              +
+           "Plan Width": 80,                                                                                 +
+           "Output": ["publications.title", "publications.pub_id"],                                          +
+           "Plans": [                                                                                        +
+             {                                                                                               +
+               "Node Type": "Seq Scan",                                                                      +
+               "Parent Relationship": "Outer",                                                               +
+               "Parallel Aware": false,                                                                      +
+               "Relation Name": "publications",                                                              +
+               "Schema": "public",                                                                           +
+               "Alias": "publications",                                                                      +
+               "Startup Cost": 0.00,                                                                         +
+               "Total Cost": 39200.70,                                                                       +
+               "Plan Rows": 908192,                                                                          +
+               "Plan Width": 80,                                                                             +
+               "Output": ["publications.title", "publications.pub_id"],                                      +
+               "Filter": "((publications.year > 1999) AND ((publications.pub_type)::text = 'article'::text))"+
+             }                                                                                               +
+           ]                                                                                                 +
+         }                                                                                                   +
+       ]                                                                                                     +
+     }                                                                                                       +
+   }                                                                                                         +
+ ]

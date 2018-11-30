@@ -1,0 +1,1 @@
+SELECT count(title) as num_articles, author_id FROM publications NATURAL JOIN authorpublication where year>1999 GROUP BY author_id, year order by year;

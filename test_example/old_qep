@@ -1,0 +1,57 @@
+[                                                                                          
+   {                                                                                        
+     "Plan": {                                                                              
+       "Node Type": "Hash Join",                                                            
+       "Parallel Aware": false,                                                             
+       "Join Type": "Inner",                                                                
+       "Startup Cost": 60370.57,                                                            
+       "Total Cost": 148968.48,                                                             
+       "Plan Rows": 2594910,                                                                
+       "Plan Width": 80,                                                                    
+       "Output": ["publications.title", "publications.year"],                               
+       "Inner Unique": true,                                                                
+       "Hash Cond": "(authorpublication.pub_id = publications.pub_id)",                     
+       "Plans": [                                                                           
+         {                                                                                  
+           "Node Type": "Seq Scan",                                                         
+           "Parent Relationship": "Outer",                                                  
+           "Parallel Aware": false,                                                         
+           "Relation Name": "authorpublication",                                            
+           "Schema": "public",                                                              
+           "Alias": "authorpublication",                                                    
+           "Startup Cost": 0.00,                                                            
+           "Total Cost": 44171.68,                                                          
+           "Plan Rows": 3062168,                                                            
+           "Plan Width": 4,                                                                 
+           "Output": ["authorpublication.pub_id"]                                           
+         },                                                                                 
+         {                                                                                  
+           "Node Type": "Hash",                                                             
+           "Parent Relationship": "Inner",                                                  
+           "Parallel Aware": false,                                                         
+           "Startup Cost": 36511.25,                                                        
+           "Total Cost": 36511.25,                                                          
+           "Plan Rows": 911626,                                                             
+           "Plan Width": 84,                                                                
+           "Output": ["publications.title", "publications.year", "publications.pub_id"],    
+           "Plans": [                                                                       
+             {                                                                              
+               "Node Type": "Seq Scan",                                                     
+               "Parent Relationship": "Outer",                                              
+               "Parallel Aware": false,                                                     
+               "Relation Name": "publications",                                             
+               "Schema": "public",                                                          
+               "Alias": "publications",                                                     
+               "Startup Cost": 0.00,                                                        
+               "Total Cost": 36511.25,                                                      
+               "Plan Rows": 911626,                                                         
+               "Plan Width": 84,                                                            
+               "Output": ["publications.title", "publications.year", "publications.pub_id"],
+               "Filter": "(publications.year > 1999)"                                       
+             }                                                                              
+           ]                                                                                
+         }                                                                                  
+       ]                                                                                    
+     }                                                                                      
+   } 
+ ]

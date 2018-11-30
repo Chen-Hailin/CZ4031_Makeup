@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title> SQL-QEP Visualization </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Treant.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom-colored-c.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='display-layout.css') }}">
+    <style>
+        .color-box {
+        width: 60px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    left: 5px;
+    top: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col">
+        <!--<img src="{{ url_for('static', filename='img/sql-icon.png') }}" alt="SQL Statements">-->
+          <h2>SQL Units</h2>
+          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+              <thead>
+              <tr>
+                  <th class="mdl-data-table__cell--non-numeric">SQL Units</th>
+                  <th> Match Color </th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for unit in sql_units %}
+              <tr id={{unit.qep_id}}>
+                  {% if unit.matchable %}
+                      <td class="mdl-data-table__cell--non-numeric">    {{ unit.text }}</td>
+                      <td><div class="color-box" style="background-color: {{ unit.color }};" id={{ unit.qep_id }} ></div></td>
+                  {% else %}
+                      <td class="mdl-data-table__cell--non-numeric">{{ unit.text }}</td>
+                      <td> </td>
+                  {% endif %}
+              </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+      </div>
+
+    <div class="mdl-cell mdl-cell--6-col">
+            <div class="chart" id="custom-colored"> --@-- </div>
+    </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='vendor/raphael.js') }}"></script>
+    <script src="{{ url_for('static', filename='Treant.js') }}"></script>
+    <script src="{{ url_for('static', filename=js_path) }}"></script>
+    <script>
+        new Treant( chart_config );
+    </script>
+</body>
+</html>
